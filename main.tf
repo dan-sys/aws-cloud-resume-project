@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source = "hashicorp/aws"
-      version = "~> 3.0"
+      version = "~> 5.0"
     }
   }
 }
@@ -12,7 +12,7 @@ provider "aws" {
   profile = "iamadmin"
 }
 
-// 
+ 
 data "aws_secretsmanager_secret" "ssl-cert" {
     name = "resume-ssl-certificate-arn"
 }
@@ -32,7 +32,7 @@ data "aws_secretsmanager_secret_version" "hz-id" {
 locals {
     s3_bucket_name = "static-resume-webpage-bucket"
     domain = "resume.adelani.xyz"
-    hosted_zone_id = jsondecode(data.aws_secretsmanager_secret_version.hz-id.secret_string)["r53-hosted-zone-id-domain"]
+    hosted_zone_id = jsondecode(data.aws_secretsmanager_secret_version.hz-id.secret_string)["hosted-zone-id"]
     cert_arn = jsondecode(data.aws_secretsmanager_secret_version.cert-arn.secret_string)["resume-ssl-certificate-arn"]
 }
 
@@ -51,7 +51,24 @@ resource "aws_s3_bucket" "static-resume-website" {
   }
 }
 
+resource "aws_cloudfront_origin_access_control" "main-oac" {
+    name = "s3-cloudfront-oac-main"
+    origin_access_control_origin_type = "s3"
+    signing_behavior = "always"
+    signing_protocol = "sigv4"
+}
+
 resource "aws_cloudfront_distribution" "main" {
+    
+    origin {
+        #s3_origin_config {
+        #  origin_access_identity = 
+        #}
+      origin_access_control_id = aws_cloudfront_origin_access_control.main-oac.id
+      domain_name = aws_s3_bucket.static-resume-website.bucket_regional_domain_name
+      origin_id = aws_s3_bucket.static-resume-website.bucket
+    }
+ #
     enabled = true
     aliases = [local.domain]
     default_root_object = "index.html"
@@ -64,12 +81,6 @@ resource "aws_cloudfront_distribution" "main" {
       cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6"
       target_origin_id = aws_s3_bucket.static-resume-website.bucket
       viewer_protocol_policy = "redirect-to-https"
-    }
-
-    origin {
-      domain_name = aws_s3_bucket.static-resume-website.bucket_regional_domain_name
-      origin_access_control_id = aws_cloudfront_origin_access_control.main.id
-      origin_id = aws_s3_bucket.static-resume-website.bucket
     }
 
     restrictions {
@@ -85,13 +96,6 @@ resource "aws_cloudfront_distribution" "main" {
     }
 }
 
-
-resource "aws_cloudfront_origin_access_control" "main" {
-    name = "s3-cloudfront-oac-main"
-    origin_access_control_origin_type = "s3"
-    signing_behavior = "always"
-    signing_protocol = "sigv4"
-}
 
 data "aws_iam_policy_document" "cloudfront_oac_access" {
   statement {

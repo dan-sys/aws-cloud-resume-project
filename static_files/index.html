@@ -1,0 +1,160 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <title>Resume</title>
+        <script>
+            fetch('https://g62pfaqks9.execute-api.us-east-1.amazonaws.com/Prod/visitorCount')
+                .then(response => response.json())
+                .then((data) => {
+                    document.getElementById('JSCountValue').innerText = data.CurrentCount
+                })
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="profile">
+                <div class="profile_container">
+                    <div class="profile_profileImage">
+                        <img src="./gg_2.jpg" alt="candidate image Daniel Adeniyi">
+                    </div>
+                    <div>
+                        <h1 class="profile_name">
+                            <span class="first_name"> Daniel </span>
+                            <span class="last_name">Adeniyi </span>
+                        </h1>
+                        <p class="profile_title"> Cloud Engineer </p>
+                        <p class="description"> 
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                        </p>
+                        <p class="JS_Value_Get description">
+                            Visitor Count :
+                            <span id="JSCountValue"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="group_1">
+                <div class="Contact_Info">
+                    <h3 class="Contact">Contact</h3>
+                    <ul class="contact_list description" style="list-style-type: none">
+                        <li>phone number : +33(0) 753 419 679</li>
+                        <li>email : adeniyidaniel3@gmail.com</li>
+                        <li>linkedin : www.linkedin.com/in/adeniyi-daniel</li>
+                        <li>github : www.github.com/in/adeniyi-daniel</li>
+                        <li>address : 133 Allee des Roses de Picardie, Compiegne, France</li>
+                    </ul>
+                </div>
+                <div class="software">
+                    <h3 class="Contact"> Skills </h3>
+                    <div class="software_item">
+                        <h4 class="software_name"> Python</h4>
+                        <p class="description">
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque 
+                        </p>
+                    </div>
+                    <div class="software_item">
+                        <h4 class="software_name"> Go </h4>
+                        <p class="description">
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque 
+                        </p>
+                    </div>
+                    <div class="software_item">
+                        <h4 class="software_name"> SQL </h4>
+                        <p class="description">
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque 
+                        </p>
+                    </div>
+                    <div class="software_item">
+                        <h4 class="software_name"> Matlab </h4>
+                        <p class="description">
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                        </p>
+                    </div>
+                </div>
+                <div class="Lang">
+                    <h3 class="Contact">Languages</h3>
+                    <ul class="lang_names description" style="list-style-type: none">
+                        <li>French - professional working proficiency</li>
+                        <li>English - full proficiency</li>
+                    </ul>
+                </div>
+                <div class="Tools">
+                    <h3 class="Contact">Tools</h3>
+                    <ul class="tool_names description" style="list-style-type: none">
+                        <li>Docker</li>
+                        <li>CloudFormation & Terraform</li>
+                        <li>Ansible</li>
+                        <li>Github actions</li>
+                        <li>Jenkins</li>
+                    </ul>
+                </div>
+                <div class="Hobbs">
+                    <h3 class="Contact">Hobbies</h3>
+                    <ul class="hobbies_names description" style="list-style-type: none">
+                        <li>Cycling</li>
+                        <li>Hiking</li>
+                        <li>Animating events</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="group_2">
+                <div class="experience">
+                    <h3 class="Contact"> Work Experience</h3>
+                    <div class="exp_item">
+                        <p class="item_preTitle"> October 2022 - present</p>
+                        <h4 class="item_Title"> Something Group of Companies Ltd</h4>
+                        <p class="item_subTitle">Data Analystica</p>
+                        <p class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        </p>
+                    </div>
+                    <div class="exp_item">
+                        <p class="item_preTitle"> Feb 2022 - Aug 2022</p>
+                        <h4 class="item_Title"> Something Group of Companies Ltd</h4>
+                        <p class="item_subTitle">Data Interna</p>
+                        <p class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        </p>
+                    </div>
+                </div>
+                <div class="prj">
+                    <h3 class="Contact"> Projects</h3>
+                    <div class="prj_item">
+                        <p class="item_subTitle">XYZ project</p>
+                        <p class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        </p>
+                    </div>
+                    <div class="prj_item">
+                        <p class="item_subTitle">ABC project</p>
+                        <p class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        </p>
+                    </div>
+            </div>
+            <div class="edu">
+                <h3 class="Contact"> Education</h3>
+                <div class="edu_item">
+                    <p class="item_preTitle"> Oct 2021 - Aug 2022</p>
+                    <h4 class="item_Title"> Ecole Nationale SAM</h4>
+                    <p class="item_subTitle">Programme name</p>
+                    <p class="description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                    </p>
+                </div>
+        </div>
+        </div>
+    </body> 
+</html>
