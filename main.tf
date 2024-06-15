@@ -61,9 +61,6 @@ resource "aws_cloudfront_origin_access_control" "main-oac" {
 resource "aws_cloudfront_distribution" "main" {
     
     origin {
-        #s3_origin_config {
-        #  origin_access_identity = 
-        #}
       origin_access_control_id = aws_cloudfront_origin_access_control.main-oac.id
       domain_name = aws_s3_bucket.static-resume-website.bucket_regional_domain_name
       origin_id = aws_s3_bucket.static-resume-website.bucket
