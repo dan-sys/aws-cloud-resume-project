@@ -36,6 +36,8 @@ locals {
     cert_arn = jsondecode(data.aws_secretsmanager_secret_version.cert-arn.secret_string)["resume-ssl-certificate-arn"]
 }
 
+
+
 terraform {
   backend "s3" {
     bucket  = "tfstate-bucket-resume-project"
@@ -127,3 +129,4 @@ resource "aws_route53_record" "domain-record" {
       zone_id = aws_cloudfront_distribution.main.hosted_zone_id
     }
 }
+
