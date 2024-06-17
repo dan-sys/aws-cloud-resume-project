@@ -55,7 +55,7 @@ resource "aws_lambda_function" "lambda_fcn" {
   filename      = "lambda.zip"
   function_name = "mylambda"
   role          = aws_iam_role.lambda_role.arn
-  handler       = "app.lambda_handler"
+  handler       = "lambda/app.lambda_handler"
   runtime       = "python3.9"
 
   #source_code_hash = filebase64sha256("lambda.zip")
@@ -79,6 +79,11 @@ data "aws_iam_policy_document" "assume_role" {
 resource "aws_iam_role" "lambda_role" {
   name               = "myrole"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
+
+  inline_policy {
+    name = "ddbreadwrite"
+    policy = data.aws_iam_policy_document.ddbreadwrite.json
+  }
 }
 
 
