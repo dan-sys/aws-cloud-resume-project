@@ -34,3 +34,5 @@ override.tf.json
 terraform.rc
 
 **/static_files/gg_2.jpg
+
+lambda.zip
