@@ -1,35 +1,27 @@
 
-
-
-resource "aws_api_gateway_rest_api" "main_api" {
-    name = "main-api"
-
-    endpoint_configuration {
-      types = [ "REGIONAL" ]
-    }
+resource "aws_apigatewayv2_api" "main-api" {
+ 	name          = "main-api"
+	protocol_type = "HTTP"
+	target        = aws_lambda_function.lambda_fcn.arn
+	cors_configuration {
+		allow_origins = ["*"]
+	}
 }
 
-resource "aws_api_gateway_resource" "root-resource" {
-  parent_id   = aws_api_gateway_rest_api.main_api.root_resource_id
-  path_part   = "visitcount"
-  rest_api_id = aws_api_gateway_rest_api.main_api.id
+resource "aws_apigatewayv2_integration" "integration" {
+  api_id            = aws_apigatewayv2_api.main-api.id
+  integration_type  = "AWS_PROXY"
+  integration_method = "POST"
+  integration_uri = aws_lambda_function.lambda_fcn.invoke_arn
 }
 
-resource "aws_api_gateway_method" "api-method" {
-  authorization = "NONE"
-  http_method   = "GET"
-  resource_id   = aws_api_gateway_resource.root-resource.id
-  rest_api_id   = aws_api_gateway_rest_api.main_api.id
+resource "aws_apigatewayv2_route" "visitcount" {
+  api_id    = aws_apigatewayv2_api.main-api.id
+  route_key = "POST /visitcount"
+
+  target = "integrations/${aws_apigatewayv2_integration.integration.id}"
 }
 
-resource "aws_api_gateway_integration" "lambda_integration" {
-  http_method = aws_api_gateway_method.api-method.http_method
-  resource_id = aws_api_gateway_resource.root-resource.id
-  rest_api_id = aws_api_gateway_rest_api.main_api.id
-  integration_http_method = "GET"
-  type        = "AWS_PROXY"
-  uri = aws_lambda_function.lambda_fcn.invoke_arn
-}
 
 # Lambda
 resource "aws_lambda_permission" "apigw_lambda" {
@@ -38,14 +30,11 @@ resource "aws_lambda_permission" "apigw_lambda" {
   function_name = aws_lambda_function.lambda_fcn.function_name
   principal     = "apigateway.amazonaws.com"
 
-  # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
-  source_arn =  "${aws_api_gateway_rest_api.main_api.execution_arn}/*/*/*"
-  #source_arn = "arn:aws:execute-api:${var.myregion}:${var.accountId}:${aws_api_gateway_rest_api.main_api.id}/*/${aws_api_gateway_method.api-method.http_method}${aws_api_gateway_resource.root-resource.path}"
+  source_arn =  "${aws_apigatewayv2_api.main-api.execution_arn}/*/*"
 }
 
 data "archive_file" "lambda_package" {
     type = "zip"
-    #source_dir  = "${path.module}/src/backend"
     source_dir = "${var.lambda_path}/src/backend"
     output_path = "${var.lambda_path}/lambda.zip"
 }
@@ -55,12 +44,12 @@ resource "aws_lambda_function" "lambda_fcn" {
   filename      = "lambda.zip"
   function_name = "mylambda"
   role          = aws_iam_role.lambda_role.arn
-  handler       = "lambda/app.lambda_handler"
+  handler       = "app.lambda_handler"
   runtime       = "python3.9"
 
-  #source_code_hash = filebase64sha256("lambda.zip")
   source_code_hash = data.archive_file.lambda_package.output_base64sha256
 }
+
 
 # IAM
 data "aws_iam_policy_document" "assume_role" {
@@ -79,7 +68,10 @@ data "aws_iam_policy_document" "assume_role" {
 resource "aws_iam_role" "lambda_role" {
   name               = "myrole"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
-
+  managed_policy_arns = [
+    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+  ]
+  
   inline_policy {
     name = "ddbreadwrite"
     policy = data.aws_iam_policy_document.ddbreadwrite.json
@@ -87,22 +79,18 @@ resource "aws_iam_role" "lambda_role" {
 }
 
 
-resource "aws_api_gateway_deployment" "deployment-main" {
-  rest_api_id = aws_api_gateway_rest_api.main_api.id
-
-  triggers = {
-    redeployment = sha1(jsonencode(aws_api_gateway_rest_api.main_api.body))
-  }
+resource "aws_apigatewayv2_deployment" "prod" {
+  api_id      = aws_apigatewayv2_api.main-api.id
+  description = "prod deployment"
 
   lifecycle {
     create_before_destroy = true
   }
 }
 
-resource "aws_api_gateway_stage" "prod" {
-  deployment_id = aws_api_gateway_deployment.deployment-main.id
-  rest_api_id   = aws_api_gateway_rest_api.main_api.id
-  stage_name    = "prod"
+resource "aws_apigatewayv2_stage" "prod-stage" {
+  api_id = aws_apigatewayv2_api.main-api.id
+  name   = "prod-stage"
 }
 
 
