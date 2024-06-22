@@ -33,6 +33,6 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-**/static_files/gg_2.jpg
+**/src/frontend/gg_2.jpg
 
-lambda.zip
+*/lambda.zip
