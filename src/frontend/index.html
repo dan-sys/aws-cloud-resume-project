@@ -1,160 +1,126 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
-        <title>Resume</title>
-        <script>
-            fetch('https://g62pfaqks9.execute-api.us-east-1.amazonaws.com/Prod/visitorCount')
-                .then(response => response.json())
-                .then((data) => {
-                    document.getElementById('JSCountValue').innerText = data.CurrentCount
-                })
-        </script>
-    </head>
-    <body>
-        <div class="container">
-            <div class="profile">
-                <div class="profile_container">
-                    <div class="profile_profileImage">
-                        <img src="./gg_2.jpg" alt="candidate image Daniel Adeniyi">
-                    </div>
-                    <div>
-                        <h1 class="profile_name">
-                            <span class="first_name"> Daniel </span>
-                            <span class="last_name">Adeniyi </span>
-                        </h1>
-                        <p class="profile_title"> Cloud Engineer </p>
-                        <p class="description"> 
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
-                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                        </p>
-                        <p class="JS_Value_Get description">
-                            Visitor Count :
-                            <span id="JSCountValue"></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="group_1">
-                <div class="Contact_Info">
-                    <h3 class="Contact">Contact</h3>
-                    <ul class="contact_list description" style="list-style-type: none">
-                        <li>phone number : +33(0) 753 419 679</li>
-                        <li>email : adeniyidaniel3@gmail.com</li>
-                        <li>linkedin : www.linkedin.com/in/adeniyi-daniel</li>
-                        <li>github : www.github.com/in/adeniyi-daniel</li>
-                        <li>address : 133 Allee des Roses de Picardie, Compiegne, France</li>
-                    </ul>
-                </div>
-                <div class="software">
-                    <h3 class="Contact"> Skills </h3>
-                    <div class="software_item">
-                        <h4 class="software_name"> Python</h4>
-                        <p class="description">
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque 
-                        </p>
-                    </div>
-                    <div class="software_item">
-                        <h4 class="software_name"> Go </h4>
-                        <p class="description">
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque 
-                        </p>
-                    </div>
-                    <div class="software_item">
-                        <h4 class="software_name"> SQL </h4>
-                        <p class="description">
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque 
-                        </p>
-                    </div>
-                    <div class="software_item">
-                        <h4 class="software_name"> Matlab </h4>
-                        <p class="description">
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                        </p>
-                    </div>
-                </div>
-                <div class="Lang">
-                    <h3 class="Contact">Languages</h3>
-                    <ul class="lang_names description" style="list-style-type: none">
-                        <li>French - professional working proficiency</li>
-                        <li>English - full proficiency</li>
-                    </ul>
-                </div>
-                <div class="Tools">
-                    <h3 class="Contact">Tools</h3>
-                    <ul class="tool_names description" style="list-style-type: none">
-                        <li>Docker</li>
-                        <li>CloudFormation & Terraform</li>
-                        <li>Ansible</li>
-                        <li>Github actions</li>
-                        <li>Jenkins</li>
-                    </ul>
-                </div>
-                <div class="Hobbs">
-                    <h3 class="Contact">Hobbies</h3>
-                    <ul class="hobbies_names description" style="list-style-type: none">
-                        <li>Cycling</li>
-                        <li>Hiking</li>
-                        <li>Animating events</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="group_2">
-                <div class="experience">
-                    <h3 class="Contact"> Work Experience</h3>
-                    <div class="exp_item">
-                        <p class="item_preTitle"> October 2022 - present</p>
-                        <h4 class="item_Title"> Something Group of Companies Ltd</h4>
-                        <p class="item_subTitle">Data Analystica</p>
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        </p>
-                    </div>
-                    <div class="exp_item">
-                        <p class="item_preTitle"> Feb 2022 - Aug 2022</p>
-                        <h4 class="item_Title"> Something Group of Companies Ltd</h4>
-                        <p class="item_subTitle">Data Interna</p>
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        </p>
-                    </div>
-                </div>
-                <div class="prj">
-                    <h3 class="Contact"> Projects</h3>
-                    <div class="prj_item">
-                        <p class="item_subTitle">XYZ project</p>
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        </p>
-                    </div>
-                    <div class="prj_item">
-                        <p class="item_subTitle">ABC project</p>
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        </p>
-                    </div>
-            </div>
-            <div class="edu">
-                <h3 class="Contact"> Education</h3>
-                <div class="edu_item">
-                    <p class="item_preTitle"> Oct 2021 - Aug 2022</p>
-                    <h4 class="item_Title"> Ecole Nationale SAM</h4>
-                    <p class="item_subTitle">Programme name</p>
-                    <p class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    </p>
-                </div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Engineer Resume</title>
+    <style>
+        body { width: 80%; 
+            margin: auto;
+            font-family: Helvetica, sans-serif; }
+        .container { width: 80%; 
+            margin: auto; 
+            grid-template-columns: 1fr 400px;
+            gap: 4rem;
+            display:grid;}
+        .header {width: 80%; 
+             margin: auto;
+             text-align: left; }
+        .summary {width: 80%; 
+             margin: auto;
+             text-align: left; }
+        .section-title { background-color: #f2f2f2; padding: 10px; }
+        .work-experience, .education, .skills { margin-bottom: 20px; }
+        ul { list-style-type: none; }
+        li { margin-bottom: 10px; }
+    </style>
+    <script>
+        fetch('https://nzwqcitdq4.execute-api.us-east-1.amazonaws.com/prod-stage')
+            .then(response => response.json())
+            .then((data) => {
+                document.getElementById('JSCountValue').innerText = data.CurrentCount
+            })
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>Daniel Adeniyi</h1>
+        <h3>Cloud Engineer</h3>
+        <p>Compiegne, France • +33 753 419 679 
+            • <a href="mailto:adeniyidaniel3@gmail.com">adeniyidaniel3@gmail.com</a>
+            • <a href="www.linkedin.com/in/adeniyi-daniel" target="_blank">www.linkedin.com/in/adeniyi-daniel</a>
+        </p>
+        <div class="VisitCounter">
+            <h3>Number of Visits to page : <span id="JSCountValue"></span>
+            </h3>
         </div>
+    </div>
+    <div class="summary">
+        <p> Certified Solutions Architect and Developer Asssoicate Cloud engineer with experience in using Amazon Web Services (AWS) and other open source technologies to setup and monitor cloud infrastructure. 
+            Deep interests in cloud automation using Infrastructure as Code (IaC) tools and setting up continuous integration and code delivery (CI/CD) pipelines.
+           </p>
+    </div>
+    <div class="container">
+        <div class="work-experience">
+            <h2 class="section-title">Work Experience</h2>
+            <!-- Resume Worded Experience -->
+            <h3>Freelance Cloud Engineer, Compiegne,HdF France</h3>
+            <p>Dec 2023 – Present</p>
+            <p>AWS Cloud Engineer</p>
+            <ul>
+                <li>— set up and automated deployment of a 3-tier dynamic web application.</li>
+                <li>— deployed a data extract transform load (ETL) pipeline for downstream visualization of API data</li>
+                <li>— EC2 instances monitoring using open source tools like Prometheus, Grafana and Node Exporter.</li>
+            </ul>
+            <!-- Growthsi Experience -->
+            <h3>Poclain Hydraulics, Verberie, HdF France</h3>
+            <p>2022 — Present</p>
+            <p>Data Analyst</p>
+            <ul>
+                <li>— analyzed aggregated End-of-Line Testbenches data acrosss different factory sites to provide comprehensive insights into EOL test failures.</li>
+                <li>— automated post processing of R&D test data to obtain test results and conclusions in a more timely and efficient manner.</li>
+                <li>— developed a change point detection algorithm to get level change points used in the post treatment of force in time data</li>
+                <li>— worked on the detection of impending failure in hydraulic components based on vibration data analysis coupled with machine learning models.</li>
+            </ul>
         </div>
-    </body> 
+        <div class="projects">
+            <h2 class="section-title">Projects</h2>
+            <h4>AWS Cloud Resume Challenge</h4>
+            <p>Static hosting of a website using a combination of S3, Cloudfront for distribution, Route 53 for custom domain naming. 
+                Used AWS Lambda function is used to update via API Gateway a visitor counter. This value of visitor counter is stored in an AWS DynamoDB.
+                Infrastructure is provisioned using Terraform HCL.</p>
+            <a href="https://github.com/dan-sys" target="_blank">View the project on GitHub</a>
+            <h4>EC2 instance monitoring and Observability</h4>
+            <p>Monitoring performance and errors on multiple EC2 instances hosting web applications. A combination of Node Exporter, Prometheus and 
+                Grafana is configured to collect, aggregate and visualize the instance metrics. Ansible is used for the configuration of the instances.
+                The infrastructure is automated and deployed using Terraform</p>
+                <a href="https://github.com/dan-sys" target="_blank">View the project on GitHub</a>
+            <h4>End to End Data Pipeline on AWS</h4>
+            <p>Created and setup an Apache Airflow server on EC2 instance. Development of DAGs on the Airflow server to extract data from Real Estate API Endpoint, 
+                load into a landing S3 bucket. S3 triggers setup to transform raw json data into csv format, which is transferred to new bucket.
+                AWS Glue is used to crawl the data in the last bucket for easy querying. Data Visualization executed in PowerBI.</p>
+            <a href="https://github.com/dan-sys" target="_blank">View the project on GitHub</a>
+        </div>
+        <div class="certifications">
+            <h2 class="section-title">Certification</h2>
+            <h4>AWS Certified Solutions Architect – Associate (SA-C02) – April 2023</h4>
+            <a href="https://www.credly.com/badges/17923bd1-b749-4cb5-be9c-94b7bcaa1022/public_url" target="_blank">View the verified achievement here</a>
+            <h4>AWS Certified Developer – Associate (DA-03) – July 2023</h4>
+            <a href="https://www.credly.com/badges/55c412af-86bf-481e-b638-e4dd7d6a12b4/public_url" target="_blank">View the verified achievement here</a>
+            <h4>Hashicorp Certified : Terraform Associate (003) – December 2023</h4>
+            <a href="https://www.credly.com/badges/f999744c-c0e1-41a0-b8cb-4824a86800d0/public_url" target="_blank">View the verified achievement here</a>
+        </div>
+        <div class="education">
+            <h2 class="section-title">Education</h2>
+            <h3>Ecole Nationale des Arts et Metiers (ENSAM), Paris, France</h3>
+            <p>2020 — 2022</p>
+            <p>Master of Science — Knowledge Integration in Mechanical Production</p>
+            <h3>Belgorod State Technological University, Belgorod, Russia</h3>
+            <p>2014 — 2018</p>
+            <p>Bachelor of Science — Mechanical Engineering Technology</p>
+        </div>
+        <div class="skills">
+            <h2 class="section-title">Skills</h2>
+            <h3>Technical Skills</h3>
+            <ul>
+                <li>Linux, Git, Docker.</li>
+                <li>Python, Golang.</li>
+                <li>Bash, Terraform, Ansible</li>
+                <li>EC2, VPC Networking, S3, Lambda, IAM</li>
+                <li>Languages: English (Native), German (Fluent), French (Conversational)</li>
+            </ul>
+        </div>
+    </div>
+</body>
 </html>
